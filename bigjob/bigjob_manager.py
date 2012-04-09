@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+
 """Module bigjob_manager.
 
 This Module is used to launch jobs via the advert service. 
@@ -443,6 +444,9 @@ bigjob_agent = bigjob.bigjob_agent.bigjob_agent(args)
     def delete_subjob(self, job_url):
         self.coordination.delete_job(job_url) 
     
+    def set_attribute(self, job_url,sj):
+        self.coordination.set_job(job_url,sj) 
+
     def get_subjob_state(self, job_url):
         return self.coordination.get_job_state(job_url) 
     
@@ -739,6 +743,21 @@ class subjob(api.base.subjob):
             self.job_url = None
             self.pilot_url = None
             self.bj = None
+      
+    def set_attribute(self, attribute,value,pilot_url=None):
+        if self.pilot_url==None:
+            self.pilot_url = pilot_url
+            self.bj=pilot_url_dict[pilot_url]  
+        sj = self.bj.get_subjob_details(self.job_url)
+        sj[attribute]=value
+        self.bj.set_attribute(self.job_url,sj)
+
+    def get_attribute(self, attribute,pilot_url=None):
+        if self.pilot_url==None:
+            self.pilot_url = pilot_url
+            self.bj=pilot_url_dict[pilot_url]  
+        sj = self.bj.get_subjob_details(self.job_url)
+        return sj[attribute]
             
     
     def __get_sj_id(self, job_url):
@@ -773,7 +792,6 @@ class subjob(api.base.subjob):
             self.pilot_url = pilot_url
             self.bj=pilot_url_dict[pilot_url]                
         return self.bj.get_subjob_state(self.job_url)
-    
     
     def cancel(self, pilot_url=None):
         logger.debug("delete job: " + self.job_url)

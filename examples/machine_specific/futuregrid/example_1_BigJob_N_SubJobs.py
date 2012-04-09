@@ -18,13 +18,13 @@ sys.path.insert(0, os.getcwd() + "/../")
 COORDINATION_URL = "redis://ILikeBigJob_wITH-REdIS@gw68.quarry.iu.teragrid.org:6379"
 
 #For remote machines username should be provided in the resource manager url as mentiond as above.
-RESOURCEMGR_URL = "pbs-ssh://username@Target_machines_host_name"
-
+RESOURCEMGR_URL = "pbs-ssh://ssarip1@alamo.futuregrid.org"
+#RESOURCEMGR_URL = "fork://localhost"
 from bigjob import bigjob, subjob, description
 
 
 ### This is the number of SubJobs you want to run
-NUMBER_JOBS=24
+NUMBER_JOBS=2
 
 def has_finished(state):
         state = state.lower()
@@ -83,10 +83,9 @@ if __name__ == "__main__":
         jd.environment = ["INFRASTRUCTURE=FutureGrid"]
         jd.output = "sj-stdout-"+str(i)+".txt"
         jd.error = "sj-stderr-"+str(i)+".txt"
-
         sj = subjob()
-        sj.submit_job(bj.pilot_url, jd)
         jobs.append(sj)
+        sj.submit_job(bj.pilot_url, jd)
         job_start_times[sj]=time.time()
         job_states[sj] = sj.get_state()
 
@@ -97,6 +96,7 @@ if __name__ == "__main__":
         for i in range(0, NUMBER_JOBS):
             old_state = job_states[jobs[i]]
             state = jobs[i].get_state()
+ 
             if result_map.has_key(state)==False:
                 result_map[state]=1
             else:

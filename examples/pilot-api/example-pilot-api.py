@@ -29,8 +29,8 @@ if __name__ == "__main__":
     
     # start work unit
     compute_unit_description = {
-            "executable": "/bin/date",
-            "arguments": [],
+            "executable": "/bin/sleep",
+            "arguments": ["100"],
             "total_core_count": 1,
             "number_of_processes": 1,            
             "output": "stdout.txt",
@@ -44,15 +44,6 @@ if __name__ == "__main__":
     compute_data_service.wait()
     
     logging.debug("Finished setup. Waiting for scheduling of CU")
-    while compute_unit != State.Done:
-        logging.debug("Check state")
-        
-        state_cu = compute_unit.get_state()
-        print "PCS State %s" % pilot_compute_service
-        print "CU: %s State: %s"%(compute_unit, state_cu)
-        if state_cu==State.Done:
-            break
-        time.sleep(2)  
     
     logging.debug("Terminate Pilot Compute and Compute Data Service")
     compute_data_service.cancel()    
