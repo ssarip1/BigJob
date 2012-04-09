@@ -114,8 +114,8 @@ class ReManager():
    def stage_in_files(self,replica_id,RESMGR_URL):
        start = time.time()
        #pdb.set_trace()
-       print "\n (INFO) " + "scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/" + str(replica_id) + "/"
-       print "\n (INFO) " + "scp -r " + self.working_directory + "async_agent/ " + str(replica_id) + " " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/"
+       #print "\n (INFO) " + "scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/" + str(replica_id) + "/"
+       #print "\n (INFO) " + "scp -r " + self.working_directory + "async_agent/ " + str(replica_id) + " " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/"
        i=replica_id
        try:
            os.mkdir(self.working_directory + "async_agent/" + str(replica_id))
@@ -125,7 +125,7 @@ class ReManager():
        if(i<self.RPB):
           try:
              os.system("cp -r " + self.replica_directory + "* " + self.working_directory + "async_agent/" + str(replica_id) + "/")
-             print "\n (INFO) total time taken to stage files on " + str(RESMGR_URL) + "is : "+ str(time.time()-start)
+             #print "\n (INFO) total time taken to stage files on " + str(RESMGR_URL) + "is : "+ str(time.time()-start)
           except:
              print "\n (INFO) Error" + str(RESMGR_URL) 
 
@@ -133,7 +133,7 @@ class ReManager():
           try:
              os.system("scp -r " + self.working_directory + "async_agent/" + str(replica_id) + " " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/")
              os.system("scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/" + str(replica_id) + "/")
-             print "\n (INFO) total time taken to stage files on " + str(RESMGR_URL) + "is : "+ str(time.time()-start)
+             #print "\n (INFO) total time taken to stage files on " + str(RESMGR_URL) + "is : "+ str(time.time()-start)
           except:
              print "\n (INFO) Error" + str(RESMGR_URL) 
                
@@ -141,7 +141,7 @@ class ReManager():
           try:
              os.system("scp -r " + self.working_directory + "async_agent/" + str(replica_id) + " " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/")
              os.system("scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/" + str(replica_id) + "/")
-             print "\n (INFO) total time taken to stage files on " + str(RESMGR_URL) + "is : "+ str(time.time()-start)
+             #print "\n (INFO) total time taken to stage files on " + str(RESMGR_URL) + "is : "+ str(time.time()-start)
           except:
              print "\n (INFO) Error" + str(RESMGR_URL) 
                
@@ -149,7 +149,7 @@ class ReManager():
           try:
              os.system("scp -r " + self.working_directory + "async_agent/" + str(replica_id) + " " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/")
              os.system("scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/" + str(replica_id) + "/")
-             print "\n (INFO) total time taken to stage files on " + str(RESMGR_URL) + "is : "+ str(time.time()-start)
+             #print "\n (INFO) total time taken to stage files on " + str(RESMGR_URL) + "is : "+ str(time.time()-start)
           except:
              print "\n (INFO) Error" + str(RESMGR_URL) 
  
@@ -174,8 +174,8 @@ class ReManager():
    
    def transfer_NPT(self, replica_id,RESOURCEMGR_URL):
        start =  time.time()
-       print "\n (INFO) " + str(RESOURCEMGR_URL)
-       print "\n (INFO) " + "scp " + self.working_directory + "NPT.conf " + str(RESOURCEMGR_URL) + ":" +self.working_directory + "async_agent/" + str(replica_id) + "/"
+       #print "\n (INFO) " + str(RESOURCEMGR_URL)
+       #print "\n (INFO) " + "scp " + self.working_directory + "NPT.conf " + str(RESOURCEMGR_URL) + ":" +self.working_directory + "async_agent/" + str(replica_id) + "/"
        try:
           os.system("scp " + self.working_directory + "NPT.conf " + str(RESOURCEMGR_URL) + ":" +self.working_directory + "async_agent/" + str(replica_id) + "/")
           print "\n (INFO) total time taken to transfer NPT on " + str(RESOURCEMGR_URL)+ " is: " + str(time.time()-start)
@@ -371,17 +371,18 @@ class ReManager():
                 print " Pilot: " + pilot_url + "state: " + str(b[k].get_state())
           
                 if str(b[k].get_state()) == "Running":
-                   print " BigJob Running: " + pilot_url 
+                   pass 
                 else:
                    pass  
+
             print "\n (INFO) Total Replica length is: " + str(self.total_number_replica)
             logging.debug("pilot job running: " + str(self.total_number_replica) + "jobs.")
 
             for i in range (0, self.total_number_replica):         
                 ############## replica job spawn ############
-                pdb.set_trace()
-                #start=time.time()
-                print "\n (INFO) Replica Variable value is: " + str(i)
+                #pdb.set_trace()
+                start=time.time()
+                #print "\n (INFO) Replica Variable value is: " + str(i)
                 if(i< RPB):
                           #start1=time.time()
                           print "\n (INFO) " + str(RESOURCEMGR_URL0[10:])
@@ -399,7 +400,7 @@ class ReManager():
                       
                 elif((i>=RPB) and (i<2*RPB)):
                           start2=time.time()
-                          print "\n (INFO) " + str(RESOURCEMGR_URL1[10:])
+                          #print "\n (INFO) " + str(RESOURCEMGR_URL1[10:])
                           self.stage_in_files(replica_id,RESOURCEMGR_URL1[10:])
                           #print "\n (INFO) total time taken to stage files is: " + str(time.time()-start2)
                           self.prepare_NAMD_config(replica_id,RESOURCEMGR_URL1[10:])
@@ -414,7 +415,7 @@ class ReManager():
 
                 elif((i>=2*RPB) and (i<3*RPB)):
                           start3=time.time()
-                          print "\n (INFO) " + str(RESOURCEMGR_URL2[10:])
+                          #print "\n (INFO) " + str(RESOURCEMGR_URL2[10:])
                           self.stage_in_files(replica_id,RESOURCEMGR_URL2[10:])
                           #print "\n (INFO) total time taken to stage files is: " + str(time.time()-start3)
                           self.prepare_NAMD_config(replica_id,RESOURCEMGR_URL2[10:])
@@ -429,7 +430,7 @@ class ReManager():
 
                 else:
                           start=time.time()
-                          print "\n (INFO) " + str(RESOURCEMGR_URL3[10:])
+                          #print "\n (INFO) " + str(RESOURCEMGR_URL3[10:])
                           self.stage_in_files(replica_id,RESOURCEMGR_URL3[10:])
                           #print "\n (INFO) total time taken to stage files is: " + str(time.time()-start)
                           self.prepare_NAMD_config(replica_id,RESOURCEMGR_URL3[10:])

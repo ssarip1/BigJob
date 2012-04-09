@@ -191,11 +191,10 @@ class ReManager():
    def submit_subjob(self,replica_id, jd):
        #######  submit job via pilot job ######
        i=replica_id
-       pdb.set_trace()
+       #pdb.set_trace()
        if(i < self.RPB):
             k=0
             sj = subjob()
-            print "\n (INFO) Pilot Job/BigJob URL: " + self.bjs[k].pilot_url + " State: " + str(self.bjs[k].get_state())
             sj.submit_job(self.bjs[k].pilot_url, jd)
             self.job_start_times[sj]=time.time()
             self.job_states[sj] = sj.get_state()
