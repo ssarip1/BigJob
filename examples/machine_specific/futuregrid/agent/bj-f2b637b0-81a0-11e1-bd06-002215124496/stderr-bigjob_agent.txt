@@ -1,0 +1,10 @@
+torque/2.4.8 version 2.4.8 loaded
+Intel compiler suite version 11.1/072 loaded
+OpenMPI version 1.4.2 loaded
+04/08/2012 10:33:33 AM - bigjob - INFO - Loading BigJob version: 0.4.33
+/N/soft/SAGA/saga/1.6/gcc-4.1.2/lib/python2.7/site-packages/pycrypto_on_pypi-2.3-py2.7-linux-x86_64.egg/Crypto/Hash/SHA256.py:3: UserWarning: Module bigjob was already imported from /N/u/ssarip1/BigJob/bigjob/__init__.pyc, but /N/soft/SAGA/saga/1.6/gcc-4.1.2/lib/python2.7/site-packages/BigJob-0.4.23-py2.7.egg is being added to sys.path
+/bin/sh: aprun: command not found
+torque/2.4.8 version 2.4.8 loaded
+Intel compiler suite version 11.1/072 loaded
+OpenMPI version 1.4.2 loaded
+=>> PBS: job killed: walltime 3626 exceeded limit 3600

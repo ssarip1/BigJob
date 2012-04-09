@@ -1,0 +1,3 @@
+torque/2.4.8 version 2.4.8 loaded
+Intel compiler suite version 11.1/072 loaded
+OpenMPI version 1.4.2 loaded
