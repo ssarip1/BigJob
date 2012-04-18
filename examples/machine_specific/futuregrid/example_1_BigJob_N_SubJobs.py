@@ -42,7 +42,7 @@ if __name__ == "__main__":
     # make sure you are familiar with the queue structure on futuregrid,ppn, your project id
     # and the walltime limits on each queue. change accordingly
     # 
-    queue="normal"          # Queue to which BigJob has to be submitted, if None, default queue is considered.
+    queue="batch"          # Queue to which BigJob has to be submitted, if None, default queue is considered.
     project=None            # Allocation Information. if None, default information is considered
     walltime=60             # Time in minutes. There are limits on the time you can request
 

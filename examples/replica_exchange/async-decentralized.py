@@ -17,9 +17,24 @@ import ConfigParser
 import saga
 import bigjob
 import subprocess
+import uuid
 
 from bigjob import bigjob, subjob, description
 
+from bigjob import logger
+sys.path.insert(0, (os.path.dirname(os.path.abspath( __file__) ) + "/../ext/redis-2.4.9/"))
+from redis import *
+
+if sys.version_info < (2, 5):
+    sys.path.append(os.path.dirname( os.path.abspath( __file__) ) + "/../ext/uuid-1.30/")
+    sys.stderr.write("Warning: Using unsupported Python version\n")
+    
+logging.debug(str(sys.path))
+
+REDIS_SERVER="localhost"
+REDIS_SERVER_PORT=6379
+REDIS_URL_SCHEME="redis://"
+REDIS_USERNAME="ILikeBigJob_wITH-REdIS"
 
 class ReManager():
 
@@ -38,6 +53,12 @@ class ReManager():
        self.bjs=[]
        self.read_config(config_filename)
        random.seed(time.time()/10.)
+
+       self.duid = uuid.uuid1()
+       self.username=REDIS_USERNAME
+       self.password=None
+       self.server_port=REDIS_SERVER_PORT
+       self.server=REDIS_SERVER
 
    def read_config(self,conf_file):
 
@@ -82,7 +103,7 @@ class ReManager():
        # make sure you are familiar with the queue structure on futuregrid,ppn, your project id
        # and the walltime limits on each queue. change accordingly
        #
-       queue="normal"          # Queue to which BigJob has to be submitted, if None, default queue is considered.
+       queue="batch"          # Queue to which BigJob has to be submitted, if None, default queue is considered.
        project=None            # Allocation Information. if None, default information is considered
        walltime=60             # Time in minutes. There are limits on the time you can request
 
@@ -112,10 +133,33 @@ class ReManager():
        print "\n (INFO) BigJob Initiation time: " + str(time.time()-start)
        return self.bjs
 
+   def set_app_url(self,app_url,count_variable):
+       self.redis.hmset(app_url,{"count":str(count_variable)})
+ 
+   def get_app_url(self,app_url):
+       count = self.redis.hgetall(app_url)
+       return count
+
+   def set_agent_url(self,agent_url,unknown):
+       self.redis.hmset(agent_url,{"state": str(unknown)})
+
+   def get_agent_url(self,agent_url):
+       state = self.redis.hgetall(agent_url)
+       return state 
+
    def stage_in_files(self,replica_id,RESMGR_URL):
        start = time.time()
        #pdb.set_trace()
+       i=replica_id
        try:
+           os.mkdir(self.working_directory + "async_agent/" + str(i))
+       except:
+           print "\n (INFO) Cannot create Directory  For replica_id :" + str(i)
+     
+       #print "\n (REPLICA_ PATH)" +  "scp -r " + self.working_directory + "async_agent/" + str(replica_id) + " " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/"
+       #print "\n (REPLICA_DIR_PATH)" +"scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/" + str(replica_id) + "/"
+       try:
+           os.system("scp -r " + self.working_directory + "async_agent/" + str(replica_id) + " " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/")
            os.system("scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/" + str(replica_id) + "/")
            print "\n (INFO) total time taken to stage files on " + str(RESMGR_URL) + "is : "+ str(time.time()-start)
        except:
@@ -153,10 +197,11 @@ class ReManager():
    def get_job_description(self, replica_id):        
 
        jd = description()  
-       jd.executable = self.working_directory + "async_agent/" + str(replica_id) + "/namd2"
+       jd.executable = "/bin/bash"
        jd.number_of_processes = "8" 
        jd.spmd_variation = "single"
-       jd.arguments = ["NPT.conf"] 
+       jd.arguments=["async_agent.py " + str(duid) + " "+ str(replica_id)+ " "+ str(self.total_number_replica)
+       #jd.arguments = ["NPT.conf"] 
        jd.working_directory = self.working_directory + "async_agent/" + str(replica_id) + "/"
        jd.output = "stdout-" + str(replica_id) + ".txt"
        jd.error = "stderr-" + str(replica_id) + ".txt"
@@ -166,6 +211,7 @@ class ReManager():
    def submit_subjob(self,replica_id, jd):
        #######  submit job via pilot job ######
        i=replica_id
+       #pdb.set_trace()
        if(i < self.RPB):
             k=0
             sj = subjob()
@@ -182,7 +228,7 @@ class ReManager():
        i=replica_id
        print "\n (INFO) Get Energy: " + str(replica_id)
        if(i< self.RPB):
-           ssh = subprocess.Popen(['ssh', 'ssarip1@hotel.futuregrid.org', 'cat' , self.working_directory+ "async_agent/"+ str(replica_id) + "/stdout-" + str(replica_id) + ".txt"], stdout=subprocess.PIPE)          
+           ssh = subprocess.Popen(['ssh', 'ssarip1@alamo.futuregrid.org', 'cat' , self.working_directory+ "async_agent/"+ str(replica_id) + "/stdout-" + str(replica_id) + ".txt"], stdout=subprocess.PIPE)          
            stdoutfile = ssh.stdout.readlines()
            for line in stdoutfile:
                items = line.split()
@@ -234,6 +280,7 @@ class ReManager():
        RESOURCEMGR_URL= self.host
        RESOURCEMGR_URL1= self.host1
        RESOURCEMGR_URL2= self.host2
+       RESOURCEMGR_URL3= self.host3
        RPB= self.RPB
        NUMBER_BIGJOBS= self.NUMBER_BIGJOBS
        numEX = self.exchange_count
@@ -241,8 +288,8 @@ class ReManager():
        #pdb.set_trace()
        for i in range(0,NUMBER_BIGJOBS):
            if(i==0):
-              print "\n (INFO) Start BigJob" + " at " + RESOURCEMGR_URL1
-              b= self.start_bigjob(COORDINATION_URL,RESOURCEMGR_URL1,i)
+              print "\n (INFO) Start BigJob" + " at " + RESOURCEMGR_URL2
+              b= self.start_bigjob(COORDINATION_URL,RESOURCEMGR_URL2,i)
               if b[i]==None or b[i].get_state()=="Failed":
                  return
            else:
@@ -276,18 +323,32 @@ class ReManager():
             print "\n (INFO) Total Replica length is: " + str(self.total_number_replica)
             logging.debug("pilot job running: " + str(self.total_number_replica) + "jobs.")
 
+            ################ Get Redis Instance########################################
+
+            bk=bigjob(COORDINATION_URL)
+            self.redis=bk.coordination.redis            
+            app_url = COORDINATION_URL + "/"+"BigJob/BigJob" + "-" + str(self.duid) + "/Count/"
+            self.set_app_url(app_url,0)
+            count= self.get_app_url(app_url)
+            print "\n (INFO) redis value is set" + str(count)
+
+
             for i in range (0, self.total_number_replica):         
                 ############## replica job spawn ############
                 #start=time.time()
                 print "\n (INFO) Replica Variable value is: " + str(i)
                 if(i< RPB):
                           #start1=time.time()
-                          #print "\n (INFO) " + str(RESOURCEMGR_URL1[10:])
-                          self.stage_in_files(replica_id,RESOURCEMGR_URL1[10:])
+                          #print "\n (INFO) " + str(RESOURCEMGR_URL2[10:])
+                          self.stage_in_files(replica_id,RESOURCEMGR_URL2[10:])
                           #print "\n (INFO) total time taken to stage files is: " + str(time.time()-start1)
-                          self.prepare_NAMD_config(replica_id,RESOURCEMGR_URL1[10:])
-                          self.transfer_NPT(replica_id,RESOURCEMGR_URL1[10:])
+                          self.prepare_NAMD_config(replica_id,RESOURCEMGR_URL2[10:])
+                          self.transfer_NPT(replica_id,RESOURCEMGR_URL2[10:])
+                            
+                          agent_url= COORDINATION_URL + "/"+"BigJob/BigJob" + "-" + str(self.duid) + "/"+str(i)+"/"
+                          self.set_agent_url(agent_url,unknown)
                           jd = self.get_job_description(replica_id)
+
                           new_job = self.submit_subjob(replica_id,jd)
                           self.replica_jobs.insert(replica_id, new_job)
                           replica_id = replica_id + 1
@@ -400,7 +461,7 @@ class ReManager():
 # main
 #####################################################################
 if __name__ == "__main__":
-   pdb.set_trace()
+   #pdb.set_trace()
    start = time.time()
    op = optparse.OptionParser()
    op.add_option('--type','-t', default='REMD')

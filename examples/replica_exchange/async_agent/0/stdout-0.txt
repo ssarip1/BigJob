@@ -17,10 +17,10 @@ Info: in all publications reporting results obtained with NAMD.
 Info: 
 Info: Based on Charm++/Converse 60200 for net-linux-x86_64-ibverbs-iccstatic
 Info: Built Mon Jul 5 18:57:01 CDT 2010 by jim on dakar.ks.uiuc.edu
-Info: 1 NAMD  2.7b3  Linux-x86_64-ibverbs  1    s17  ssarip1
+Info: 1 NAMD  2.7b3  Linux-x86_64-ibverbs  1    s28  ssarip1
 Info: Running on 1 processors.
 Info: CPU topology information available.
-Info: Charm++/Converse parallel runtime startup completed at 0.00267386 s
+Info: Charm++/Converse parallel runtime startup completed at 0.00274396 s
 Info: 41.9648 MB of memory in use based on /proc/self/stat
 Info: Configuration file is NPT.conf
 TCL: Suspending until startup complete.
@@ -112,7 +112,7 @@ Info: RIGID BONDS TO HYDROGEN : ALL
 Info:         ERROR TOLERANCE : 1e-08
 Info:          MAX ITERATIONS : 100
 Info: RIGID WATER USING SETTLE ALGORITHM
-Info: RANDOM NUMBER SEED     1333953236
+Info: RANDOM NUMBER SEED     1334622145
 Info: USE HYDROGEN BONDS?    NO
 Info: COORDINATE PDB         sbox_init.pdb
 Info: STRUCTURE FILE         sbox_init.psf
@@ -137,8 +137,8 @@ Warning: VDW TYPE NAME ND MATCHES PARAMETER TYPE NAME N*
 Warning: VDW TYPE NAME NH MATCHES PARAMETER TYPE NAME N*
 Warning: VDW TYPE NAME N4 MATCHES PARAMETER TYPE NAME N*
 Warning: Found 17759 H-H bonds.
-Info: TIME FOR READING PSF FILE: 0.2867
-Info: TIME FOR READING PDB FILE: 0.173167
+Info: TIME FOR READING PSF FILE: 0.268524
+Info: TIME FOR READING PDB FILE: 0.14397
 Info: 
 Info: Reading from binary file 310K-init.coor
 Info: ****************************
@@ -162,37 +162,68 @@ Info: MASS DENSITY = 0.96125 g/cm^3
 Info: ATOM DENSITY = 0.0929101 atoms/A^3
 Info: *****************************
 Info: 
-Info: Entering startup at 14.5988 s, 57.9609 MB of memory in use
-Info: Startup phase 0 took 0.00019908 s, 57.9609 MB of memory in use
-Info: Startup phase 1 took 0.0391431 s, 67.0547 MB of memory in use
-Info: Startup phase 2 took 0.000566959 s, 67.4844 MB of memory in use
+Info: Entering startup at 1.10912 s, 57.9609 MB of memory in use
+Info: Startup phase 0 took 0.000138044 s, 57.9609 MB of memory in use
+Info: Startup phase 1 took 0.0399089 s, 67.0547 MB of memory in use
+Info: Startup phase 2 took 0.000577927 s, 67.4844 MB of memory in use
 Info: PATCH GRID IS 4 (PERIODIC) BY 5 (PERIODIC) BY 5 (PERIODIC)
 Info: PATCH GRID IS 1-AWAY BY 1-AWAY BY 1-AWAY
-Info: REMOVING COM VELOCITY 0.0576909 -0.00522045 0.0592372
+Info: REMOVING COM VELOCITY 0.0244846 0.00503853 -0.0306537
 Info: LARGEST PATCH (49) HAS 678 ATOMS
-Info: Startup phase 3 took 0.030582 s, 77.7188 MB of memory in use
+Info: Startup phase 3 took 0.030663 s, 77.7188 MB of memory in use
 Info: PME using 1 and 1 processors for FFT and reciprocal sum.
 Info: PME GRID LOCATIONS: 0
 Info: PME TRANS LOCATIONS: 0
 Info: Optimizing 4 FFT steps.  1... 2... 3... 4...   Done.
-Info: Startup phase 4 took 0.665645 s, 77.7188 MB of memory in use
-Info: Startup phase 5 took 7.00951e-05 s, 77.7188 MB of memory in use
+Info: Startup phase 4 took 0.66734 s, 77.7188 MB of memory in use
+Info: Startup phase 5 took 6.41346e-05 s, 77.7188 MB of memory in use
 LDB: Measuring processor speeds ...Namd Central LB beign created...
  Done.
-Info: Startup phase 6 took 0.000191927 s, 77.7188 MB of memory in use
+Info: Startup phase 6 took 0.000180006 s, 77.7188 MB of memory in use
 Info: CREATING 3110 COMPUTE OBJECTS
 Info: useSync: 1 useProxySync: 0
 Info: NONBONDED TABLE R-SQUARED SPACING: 0.0625
 Info: NONBONDED TABLE SIZE: 769 POINTS
-Info: Startup phase 7 took 0.0138791 s, 81.3047 MB of memory in use
-Info: Startup phase 8 took 0.000519037 s, 93.9805 MB of memory in use
-Info: Finished startup at 15.3496 s, 93.9805 MB of memory in use
+Info: Startup phase 7 took 0.0133538 s, 81.3047 MB of memory in use
+Info: Startup phase 8 took 0.000492096 s, 93.9805 MB of memory in use
+Info: Finished startup at 1.86184 s, 93.9805 MB of memory in use
 
 TCL: Running for 500 steps
-PRESSURE: 0 -268.473 -156.01 129.76 -158.58 -251.167 111.391 127.415 110.656 -104.849
-GPRESSURE: 0 -213.11 -159.325 129.198 -168.747 -282.401 66.8558 145.822 103.018 -127.956
+PRESSURE: 0 -309.683 -136.085 124.933 -138.586 -238.277 93.8301 122.575 93.0589 -111.974
+GPRESSURE: 0 -238.617 -149.223 126.758 -158.576 -287.824 73.7748 143.367 109.901 -132.375
 ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
 
-ENERGY:       0       798.3326      1700.6136      2298.3014        54.7332        -224737.2938     24047.2747         0.0000         0.0000     34306.8737        -161531.1646       301.6759   -195838.0383   -161437.2787       301.6759           -208.1630      -207.8221    605251.7436      -208.1630      -207.8221
+ENERGY:       0       798.3326      1700.6136      2298.3014        54.7332        -224737.2938     24047.2747         0.0000         0.0000     33767.6239        -162070.4144       296.9340   -195838.0383   -161976.6647       296.9340           -219.9780      -219.6050    605251.7436      -219.9780      -219.6050
 
 OPENING EXTENDED SYSTEM TRAJECTORY FILE
+LDB: ============= START OF LOAD BALANCING ============== 122.617
+LDB: ============== END OF LOAD BALANCING =============== 122.617
+
+Info: Initial time: 1 CPUs 1.20673 s/step 6.98341 days/ns 229.754 MB memory
+LDB: ============= START OF LOAD BALANCING ============== 243.97
+LDB: ============== END OF LOAD BALANCING =============== 243.971
+
+Info: Initial time: 1 CPUs 1.21356 s/step 7.02293 days/ns 235.078 MB memory
+LDB: ============= START OF LOAD BALANCING ============== 365.604
+LDB: ============== END OF LOAD BALANCING =============== 365.604
+
+Info: Initial time: 1 CPUs 1.2164 s/step 7.03932 days/ns 237.398 MB memory
+LDB: ============= START OF LOAD BALANCING ============== 487.769
+LDB: ============== END OF LOAD BALANCING =============== 487.769
+
+Info: Benchmark time: 1 CPUs 1.22165 s/step 7.06975 days/ns 239.215 MB memory
+Info: Benchmark time: 1 CPUs 1.21887 s/step 7.05363 days/ns 248.844 MB memory
+WRITING EXTENDED SYSTEM TO RESTART FILE AT STEP 500
+WRITING COORDINATES TO RESTART FILE AT STEP 500
+FINISHED WRITING RESTART COORDINATES
+WRITING VELOCITIES TO RESTART FILE AT STEP 500
+FINISHED WRITING RESTART VELOCITIES
+WRITING EXTENDED SYSTEM TO OUTPUT FILE AT STEP 500
+CLOSING EXTENDED SYSTEM TRAJECTORY FILE
+WRITING COORDINATES TO OUTPUT FILE AT STEP 500
+COORDINATE DCD FILE WAS NOT CREATED
+WRITING VELOCITIES TO OUTPUT FILE AT STEP 500
+====================================================
+
+WallClock: 611.897888  CPUTime: 611.574036  Memory: 250.542969 MB
+Program finished.

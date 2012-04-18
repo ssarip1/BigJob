@@ -77,6 +77,19 @@ class ReManager():
 
    def start_bigjob(self,COORDINATION_URL,RESMGR_URL,i):
 
+
+       #####################################################
+       # Delete and Create BigJob Agent Working directory  
+       #####################################################
+       try:
+          #print "\n (Delete Remote Directory If Exists)" + "ssh "+ str(RESMGR_URL[10:])+ " rm -rf "+ self.working_directory+"async_agent_16"
+          os.system(" ssh " + str(RESMGR_URL[10:]) + " rm -rf "+ self.working_directory + "async_agent_16")
+          print "\n (Success) Deleted Existing BigJobAgent Working Directory"
+          os.system(" ssh " + str(RESMGR_URL[10:]) + " mkdir "+ self.working_directory + "async_agent_16")
+          print "\n (Success) Created New BigJobAgent Working Directory"
+       except IOError, e:
+          print 'exists', e
+
        ##########################################################################################
        # make sure you are familiar with the queue structure on futuregrid,ppn, your project id
        # and the walltime limits on each queue. change accordingly
@@ -87,7 +100,7 @@ class ReManager():
 
        processes_per_node=8    # ppn
        number_of_processes=64  # The total number of processes ( BigJob size), used to run Jobs
-       workingdirectory= os.path.join(os.getcwd(), "async_agent") # working directory for agent.
+       workingdirectory= os.path.join(os.getcwd(), "async_agent_16") # working directory for agent.
        ##########################################################################################
        #pdb.set_trace()
        #self.bjs=[]
@@ -114,41 +127,42 @@ class ReManager():
    def stage_in_files(self,replica_id,RESMGR_URL):
        start = time.time()
        #pdb.set_trace()
-       #print "\n (INFO) " + "scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/" + str(replica_id) + "/"
-       #print "\n (INFO) " + "scp -r " + self.working_directory + "async_agent/ " + str(replica_id) + " " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/"
+       #print "\n (INFO) " + "scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent_16/" + str(replica_id) + "/"
+       #print "\n (INFO) " + "scp -r " + self.working_directory + "async_agent_16/ " + str(replica_id) + " " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/"
        i=replica_id
-       try:
-           os.mkdir(self.working_directory + "async_agent/" + str(replica_id))
+       """try:
+           os.mkdir(self.working_directory + "async_agent_16/" + str(replica_id))
        except:
            print "\n (INFO) Cannot create Directory  For replica_id :" + str(i)
-
+       """
        if(i<self.RPB):
           try:
-             os.system("cp -r " + self.replica_directory + "* " + self.working_directory + "async_agent/" + str(replica_id) + "/")
+             os.mkdir(self.working_directory + "async_agent_16/" + str(replica_id))
+             os.system("cp -r " + self.replica_directory + "* " + self.working_directory + "async_agent_16/" + str(replica_id) + "/")
              #print "\n (INFO) total time taken to stage files on " + str(RESMGR_URL) + "is : "+ str(time.time()-start)
           except:
              print "\n (INFO) Error" + str(RESMGR_URL) 
 
        elif((i>=self.RPB) and (i<=2*self.RPB)):
           try:
-             os.system("scp -r " + self.working_directory + "async_agent/" + str(replica_id) + " " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/")
-             os.system("scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/" + str(replica_id) + "/")
+             os.system(" ssh " + str(RESMGR_URL) + " mkdir "+ self.working_directory + "async_agent_16/"+ str(replica_id))
+             os.system("scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent_16/" + str(replica_id) + "/")
              #print "\n (INFO) total time taken to stage files on " + str(RESMGR_URL) + "is : "+ str(time.time()-start)
           except:
              print "\n (INFO) Error" + str(RESMGR_URL) 
                
        elif((i>=2*self.RPB) and (i<=3*self.RPB)):
           try:
-             os.system("scp -r " + self.working_directory + "async_agent/" + str(replica_id) + " " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/")
-             os.system("scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/" + str(replica_id) + "/")
+             os.system(" ssh " + str(RESMGR_URL) + " mkdir "+ self.working_directory + "async_agent_16/"+ str(replica_id))
+             os.system("scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent_16/" + str(replica_id) + "/")
              #print "\n (INFO) total time taken to stage files on " + str(RESMGR_URL) + "is : "+ str(time.time()-start)
           except:
              print "\n (INFO) Error" + str(RESMGR_URL) 
                
        else:
           try:
-             os.system("scp -r " + self.working_directory + "async_agent/" + str(replica_id) + " " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/")
-             os.system("scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent/" + str(replica_id) + "/")
+             os.system(" ssh " + str(RESMGR_URL) + " mkdir "+ self.working_directory + "async_agent_16/"+ str(replica_id))
+             os.system("scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "async_agent_16/" + str(replica_id) + "/")
              #print "\n (INFO) total time taken to stage files on " + str(RESMGR_URL) + "is : "+ str(time.time()-start)
           except:
              print "\n (INFO) Error" + str(RESMGR_URL) 
@@ -175,9 +189,9 @@ class ReManager():
    def transfer_NPT(self, replica_id,RESOURCEMGR_URL):
        start =  time.time()
        #print "\n (INFO) " + str(RESOURCEMGR_URL)
-       #print "\n (INFO) " + "scp " + self.working_directory + "NPT.conf " + str(RESOURCEMGR_URL) + ":" +self.working_directory + "async_agent/" + str(replica_id) + "/"
+       #print "\n (INFO) " + "scp " + self.working_directory + "NPT.conf " + str(RESOURCEMGR_URL) + ":" +self.working_directory + "async_agent_16/" + str(replica_id) + "/"
        try:
-          os.system("scp " + self.working_directory + "NPT.conf " + str(RESOURCEMGR_URL) + ":" +self.working_directory + "async_agent/" + str(replica_id) + "/")
+          os.system("scp " + self.working_directory + "NPT.conf " + str(RESOURCEMGR_URL) + ":" +self.working_directory + "async_agent_16/" + str(replica_id) + "/")
           print "\n (INFO) total time taken to transfer NPT on " + str(RESOURCEMGR_URL)+ " is: " + str(time.time()-start)
        except OSError:
           print "Unexpected error:", sys.exc_info() [0]
@@ -185,11 +199,11 @@ class ReManager():
    def get_job_description(self, replica_id):        
 
        jd = description()  
-       jd.executable = self.working_directory + "async_agent/" + str(replica_id) + "/namd2"
+       jd.executable = self.working_directory + "async_agent_16/" + str(replica_id) + "/namd2"
        jd.number_of_processes = "8" 
        jd.spmd_variation = "single"
        jd.arguments = ["NPT.conf"] 
-       jd.working_directory = self.working_directory + "async_agent/" + str(replica_id) + "/"
+       jd.working_directory = self.working_directory + "async_agent_16/" + str(replica_id) + "/"
        jd.output = "stdout-" + str(replica_id) + ".txt"
        jd.error = "stderr-" + str(replica_id) + ".txt"
        
@@ -236,7 +250,7 @@ class ReManager():
        i=replica_id
        print "\n (INFO) Get Energy: " + str(replica_id)
        if(i< self.RPB):
-           ssh = subprocess.Popen(['ssh', 'ssarip1@sierra.futuregrid.org', 'cat' , self.working_directory+ "async_agent/"+ str(replica_id) + "/stdout-" + str(replica_id) + ".txt"], stdout=subprocess.PIPE)          
+           ssh = subprocess.Popen(['ssh', 'ssarip1@sierra.futuregrid.org', 'cat' , self.working_directory+ "async_agent_16/"+ str(replica_id) + "/stdout-" + str(replica_id) + ".txt"], stdout=subprocess.PIPE)          
            stdoutfile= ssh.stdout.readlines()
            for line in stdoutfile:
                items = line.split()
@@ -247,7 +261,7 @@ class ReManager():
            return eval(en)
 
        elif((i>=self.RPB) and (i<2*self.RPB)):
-           ssh = subprocess.Popen(['ssh', 'ssarip1@india.futuregrid.org', 'cat' , self.working_directory+ "async_agent/"+ str(replica_id) + "/stdout-" + str(replica_id) + ".txt"], stdout=subprocess.PIPE)          
+           ssh = subprocess.Popen(['ssh', 'ssarip1@india.futuregrid.org', 'cat' , self.working_directory+ "async_agent_16/"+ str(replica_id) + "/stdout-" + str(replica_id) + ".txt"], stdout=subprocess.PIPE)          
            stdoutfile = ssh.stdout.readlines()
            for line in stdoutfile:
                items = line.split()
@@ -258,7 +272,7 @@ class ReManager():
            return eval(en) 
 
        elif((i>=2*self.RPB) and (i<3*self.RPB)):
-           ssh = subprocess.Popen(['ssh', 'ssarip1@alamo.futuregrid.org', 'cat' , self.working_directory+ "async_agent/"+ str(replica_id) + "/stdout-" + str(replica_id) + ".txt"], stdout=subprocess.PIPE)          
+           ssh = subprocess.Popen(['ssh', 'ssarip1@alamo.futuregrid.org', 'cat' , self.working_directory+ "async_agent_16/"+ str(replica_id) + "/stdout-" + str(replica_id) + ".txt"], stdout=subprocess.PIPE)          
            stdoutfile = ssh.stdout.readlines()
            for line in stdoutfile:
                items = line.split()
@@ -269,7 +283,7 @@ class ReManager():
            return eval(en) 
 
        else:
-           ssh = subprocess.Popen(['ssh', 'ssarip1@hotel.futuregrid.org', 'cat' , self.working_directory+ "async_agent/"+ str(replica_id) + "/stdout-" + str(replica_id) + ".txt"], stdout=subprocess.PIPE)          
+           ssh = subprocess.Popen(['ssh', 'ssarip1@hotel.futuregrid.org', 'cat' , self.working_directory+ "async_agent_16/"+ str(replica_id) + "/stdout-" + str(replica_id) + ".txt"], stdout=subprocess.PIPE)          
            stdoutfile = ssh.stdout.readlines()
            for line in stdoutfile:
                items = line.split()
@@ -324,7 +338,7 @@ class ReManager():
        RPB= self.RPB
        NUMBER_BIGJOBS= self.NUMBER_BIGJOBS
        numEX = self.exchange_count
-       ofilename = "async-remd-temp.out"
+       ofilename = "async-remd-temp-16.out"
        #pdb.set_trace()
 
        for i in range(0,NUMBER_BIGJOBS):
@@ -468,6 +482,7 @@ class ReManager():
                            pass
                        print "replica_id: " + str(irep) + " job: " + str(running_job) + "received_state: " + str(state) + " Time since launch: " + str(time.time()-start) + " sec"
                        if (str(state) == "Done") and (flagJobDone[irep] is False):
+                           start=time.time()
                            print "(INFO) Replica " + "%d"%irep + " done"
                            energy[irep] = self.get_energy(irep) ##todo get energy from right host
                            flagJobDone[irep] = True
@@ -504,6 +519,8 @@ class ReManager():
                                   #list.append[frep]
                                   print "\n(INFO)  " + " Number of Job Done:  " + str(numJobDone) 
                                   print "\n(INFO) replica_id:" + str(irep) + " exchanged temperature with " + "replica_id: " + str(frep) + "\n\n" 
+                                  end=time.time()
+                                  print "\n (INFO) Time for exchange is: " + str(end-start)
                                   break
                                elif(frep==j):
                                   print "\n Checking the same replica........." + str(irep)
@@ -521,8 +538,9 @@ class ReManager():
                           pass
                           time.sleep(15)
                 
-               
             iEX = iEX +1
+            end_time=time.time()
+            print "\n (INFO) Time for an exchange is: " + str(end_time-start_time)
             output_str = "%5d-th EX :"%iEX
             for irep in range(0, numReplica):
                 output_str = output_str + "  %s"%self.temperatures[irep]
@@ -536,7 +554,7 @@ class ReManager():
             ofile.write(" \n")            
             ofile.close()
         
-       print "REMD Runtime: " + str(time.time()-start) + " sec; " + "; number replica: " + str(self.total_number_replica) + "; number namd jobs: " + str(total_number_of_namd_jobs)
+       print "REMD Runtime: " + str(time.time()-start) + " sec; " + "number replica: " + str(self.total_number_replica) + "; number namd jobs: " + str(total_number_of_namd_jobs)
 
        print "\n (INFO) Stopping BigJob"  
        self.stop_bigjob()
