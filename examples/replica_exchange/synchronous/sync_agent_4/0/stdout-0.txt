@@ -17,11 +17,11 @@ Info: in all publications reporting results obtained with NAMD.
 Info: 
 Info: Based on Charm++/Converse 60200 for net-linux-x86_64-ibverbs-iccstatic
 Info: Built Mon Jul 5 18:57:01 CDT 2010 by jim on dakar.ks.uiuc.edu
-Info: 1 NAMD  2.7b3  Linux-x86_64-ibverbs  1    s11  ssarip1
+Info: 1 NAMD  2.7b3  Linux-x86_64-ibverbs  1    s9  ssarip1
 Info: Running on 1 processors.
 Info: CPU topology information available.
-Info: Charm++/Converse parallel runtime startup completed at 0.00270796 s
-Info: 41.9648 MB of memory in use based on /proc/self/stat
+Info: Charm++/Converse parallel runtime startup completed at 0.00272298 s
+Info: 41.2148 MB of memory in use based on /proc/self/stat
 Info: Configuration file is NPT.conf
 TCL: Suspending until startup complete.
 Info: EXTENDED SYSTEM FILE   310K-init.xsc
@@ -112,7 +112,7 @@ Info: RIGID BONDS TO HYDROGEN : ALL
 Info:         ERROR TOLERANCE : 1e-08
 Info:          MAX ITERATIONS : 100
 Info: RIGID WATER USING SETTLE ALGORITHM
-Info: RANDOM NUMBER SEED     1334703832
+Info: RANDOM NUMBER SEED     1336463261
 Info: USE HYDROGEN BONDS?    NO
 Info: COORDINATE PDB         sbox_init.pdb
 Info: STRUCTURE FILE         sbox_init.psf
@@ -137,8 +137,8 @@ Warning: VDW TYPE NAME ND MATCHES PARAMETER TYPE NAME N*
 Warning: VDW TYPE NAME NH MATCHES PARAMETER TYPE NAME N*
 Warning: VDW TYPE NAME N4 MATCHES PARAMETER TYPE NAME N*
 Warning: Found 17759 H-H bonds.
-Info: TIME FOR READING PSF FILE: 0.266656
-Info: TIME FOR READING PDB FILE: 0.146735
+Info: TIME FOR READING PSF FILE: 0.262444
+Info: TIME FOR READING PDB FILE: 0.141849
 Info: 
 Info: Reading from binary file 310K-init.coor
 Info: ****************************
@@ -162,37 +162,37 @@ Info: MASS DENSITY = 0.96125 g/cm^3
 Info: ATOM DENSITY = 0.0929101 atoms/A^3
 Info: *****************************
 Info: 
-Info: Entering startup at 14.3793 s, 57.9609 MB of memory in use
-Info: Startup phase 0 took 0.000146866 s, 57.9609 MB of memory in use
-Info: Startup phase 1 took 0.0389299 s, 67.0547 MB of memory in use
-Info: Startup phase 2 took 0.000705004 s, 67.4844 MB of memory in use
+Info: Entering startup at 1.09808 s, 57.2109 MB of memory in use
+Info: Startup phase 0 took 0.000156879 s, 57.2109 MB of memory in use
+Info: Startup phase 1 took 0.038511 s, 66.3047 MB of memory in use
+Info: Startup phase 2 took 0.000575066 s, 66.7344 MB of memory in use
 Info: PATCH GRID IS 4 (PERIODIC) BY 5 (PERIODIC) BY 5 (PERIODIC)
 Info: PATCH GRID IS 1-AWAY BY 1-AWAY BY 1-AWAY
-Info: REMOVING COM VELOCITY -0.00738056 0.0355765 0.0159181
+Info: REMOVING COM VELOCITY 0.018501 0.0258393 0.00960341
 Info: LARGEST PATCH (49) HAS 678 ATOMS
-Info: Startup phase 3 took 0.0320752 s, 77.7188 MB of memory in use
+Info: Startup phase 3 took 0.0301189 s, 76.9688 MB of memory in use
 Info: PME using 1 and 1 processors for FFT and reciprocal sum.
 Info: PME GRID LOCATIONS: 0
 Info: PME TRANS LOCATIONS: 0
 Info: Optimizing 4 FFT steps.  1... 2... 3... 4...   Done.
-Info: Startup phase 4 took 0.654956 s, 77.7188 MB of memory in use
-Info: Startup phase 5 took 0.000112057 s, 77.7188 MB of memory in use
+Info: Startup phase 4 took 0.664768 s, 76.9688 MB of memory in use
+Info: Startup phase 5 took 6.60419e-05 s, 76.9688 MB of memory in use
 LDB: Measuring processor speeds ...Namd Central LB beign created...
  Done.
-Info: Startup phase 6 took 0.000242949 s, 77.7188 MB of memory in use
+Info: Startup phase 6 took 0.000175953 s, 76.9688 MB of memory in use
 Info: CREATING 3110 COMPUTE OBJECTS
 Info: useSync: 1 useProxySync: 0
 Info: NONBONDED TABLE R-SQUARED SPACING: 0.0625
 Info: NONBONDED TABLE SIZE: 769 POINTS
-Info: Startup phase 7 took 0.0137792 s, 81.3047 MB of memory in use
-Info: Startup phase 8 took 0.000608921 s, 93.9805 MB of memory in use
-Info: Finished startup at 15.1209 s, 93.9805 MB of memory in use
+Info: Startup phase 7 took 0.013227 s, 80.5547 MB of memory in use
+Info: Startup phase 8 took 0.00051403 s, 93.2305 MB of memory in use
+Info: Finished startup at 1.84619 s, 93.2305 MB of memory in use
 
 TCL: Running for 500 steps
-PRESSURE: 0 -316.493 -148.157 92.6417 -150.639 -266.313 95.2445 90.3514 94.5639 -64.615
-GPRESSURE: 0 -251.818 -168.852 128.142 -178.186 -287.858 75.3125 144.819 111.529 -107.009
+PRESSURE: 0 -289.094 -133.432 132.346 -135.959 -255.903 115.354 130.013 114.597 -87.6114
+GPRESSURE: 0 -228.878 -138.165 143.402 -147.543 -289.417 80.616 160.037 116.756 -113.23
 ETITLE:      TS           BOND          ANGLE          DIHED          IMPRP               ELECT            VDW       BOUNDARY           MISC        KINETIC               TOTAL           TEMP      POTENTIAL         TOTAL3        TEMPAVG            PRESSURE      GPRESSURE         VOLUME       PRESSAVG      GPRESSAVG
 
-ENERGY:       0       798.3326      1700.6136      2298.3014        54.7332        -224737.2938     24047.2747         0.0000         0.0000     33989.0838        -161848.9545       298.8814   -195838.0383   -161755.1592       298.8814           -215.8068      -215.5619    605251.7436      -215.8068      -215.5619
+ENERGY:       0       798.3326      1700.6136      2298.3014        54.7332        -224737.2939     24047.2747         0.0000         0.0000     34155.8376        -161682.2007       300.3477   -195838.0384   -161588.3320       300.3477           -210.8694      -210.5085    605251.7436      -210.8694      -210.5085
 
 OPENING EXTENDED SYSTEM TRAJECTORY FILE

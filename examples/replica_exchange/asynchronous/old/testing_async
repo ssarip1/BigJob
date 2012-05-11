@@ -1,0 +1,382 @@
+Set logging level: logging.INFO/20
+read configfile: remd_4.conf
+
+ (INFO) reading values 
+
+ replica count is 4
+
+ number of nodes is 4
+
+ exchange count is 4
+
+ working directory path is: /N/u/ssarip1/BigJob/examples/replica_exchange/asynchronous/
+
+ replica_directory path is: /N/u/ssarip1/BigJob/examples/replica_exchange/NAMD_files/
+
+ Host of the application is: pbs-ssh://ssarip1@sierra.futuregrid.org
+
+ Host of the application is: pbs-ssh://ssarip1@india.futuregrid.org
+
+ Host of the application is: pbs-ssh://ssarip1@alamo.futuregrid.org
+
+ Host of the application is: pbs-ssh://ssarip1@hotel.futuregrid.org
+
+ number of cores per replica is: 4
+
+ (Success) Deleted Existing BigJobAgent Working Directory
+
+ (Success) Created New BigJobAgent Working Directory
+
+ (VARIABLE) 0
+
+ (INFO) Start Pilot Job/BigJob at: pbs-ssh://ssarip1@sierra.futuregrid.org
+use standard proxy
+Submit pilot job to: ssh://ssarip1@sierra.futuregrid.org/
+
+ (INFO) Pilot Job/BigJob URL: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org State: Running
+
+ (INFO) BigJob Initiation time: 7.59244680405
+
+ (INFO) Total time to Stage files is: 1.23457717896
+
+
+#################### spawn jobs ####################
+
+ (INFO) BigJob State: Running
+ Pilot: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.orgstate: Running
+
+ (INFO) Total Replica length is: 4
+
+ (INFO) ssarip1@sierra.futuregrid.org
+
+ (DEBUG) temperature is changing to 300 from 330 for rep0
+(INFO) Replica 1 started (Num of Exchange Done = 0)
+
+ (INFO) ssarip1@sierra.futuregrid.org
+
+ (DEBUG) temperature is changing to 310 from 300 for rep1
+(INFO) Replica 2 started (Num of Exchange Done = 0)
+
+ (INFO) ssarip1@sierra.futuregrid.org
+
+ (DEBUG) temperature is changing to 320 from 310 for rep2
+(INFO) Replica 3 started (Num of Exchange Done = 0)
+
+ (INFO) ssarip1@sierra.futuregrid.org
+
+ (DEBUG) temperature is changing to 330 from 320 for rep3
+(INFO) Replica 4 started (Num of Exchange Done = 0)
+
+ started 4 of 4 in this round.
+
+ Time for spawning 4 replica: 6.72349596024 s
+
+
+
+ (EXCHANGE COUNT) INFO : 0
+
+##################### Replica State Check at: Thu Apr 26 20:02:37 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6e7cfaf0-9015-11e1-87e8-002215124496received_state: Running Time since launch: 6.79830384254 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6f7d54ea-9015-11e1-87e8-002215124496received_state: Running Time since launch: 21.8706970215 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-707e5902-9015-11e1-87e8-002215124496received_state: Running Time since launch: 36.9455728531 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-717e802a-9015-11e1-87e8-002215124496received_state: Running Time since launch: 52.0177679062 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 0
+
+##################### Replica State Check at: Thu Apr 26 20:03:37 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6e7cfaf0-9015-11e1-87e8-002215124496received_state: Running Time since launch: 67.0908269882 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6f7d54ea-9015-11e1-87e8-002215124496received_state: Running Time since launch: 82.1644539833 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-707e5902-9015-11e1-87e8-002215124496received_state: Running Time since launch: 97.2371668816 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-717e802a-9015-11e1-87e8-002215124496received_state: Running Time since launch: 112.309719801 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 0
+
+##################### Replica State Check at: Thu Apr 26 20:04:37 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6e7cfaf0-9015-11e1-87e8-002215124496received_state: Running Time since launch: 127.382547855 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6f7d54ea-9015-11e1-87e8-002215124496received_state: Running Time since launch: 142.45539403 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-707e5902-9015-11e1-87e8-002215124496received_state: Running Time since launch: 157.527971983 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-717e802a-9015-11e1-87e8-002215124496received_state: Running Time since launch: 172.600677013 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 0
+
+##################### Replica State Check at: Thu Apr 26 20:05:38 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6e7cfaf0-9015-11e1-87e8-002215124496received_state: Running Time since launch: 187.673302889 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6f7d54ea-9015-11e1-87e8-002215124496received_state: Running Time since launch: 202.746021032 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-707e5902-9015-11e1-87e8-002215124496received_state: Running Time since launch: 217.818595886 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-717e802a-9015-11e1-87e8-002215124496received_state: Running Time since launch: 232.892078876 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 0
+
+##################### Replica State Check at: Thu Apr 26 20:06:38 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6e7cfaf0-9015-11e1-87e8-002215124496received_state: Running Time since launch: 247.964897871 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6f7d54ea-9015-11e1-87e8-002215124496received_state: Running Time since launch: 263.03764081 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-707e5902-9015-11e1-87e8-002215124496received_state: Running Time since launch: 278.110677958 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-717e802a-9015-11e1-87e8-002215124496received_state: Running Time since launch: 293.184299946 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 0
+
+##################### Replica State Check at: Thu Apr 26 20:07:38 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6e7cfaf0-9015-11e1-87e8-002215124496received_state: Running Time since launch: 308.257324934 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6f7d54ea-9015-11e1-87e8-002215124496received_state: Running Time since launch: 323.329837799 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-707e5902-9015-11e1-87e8-002215124496received_state: Running Time since launch: 338.402568817 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-717e802a-9015-11e1-87e8-002215124496received_state: Running Time since launch: 353.474917889 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 0
+
+##################### Replica State Check at: Thu Apr 26 20:08:39 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6e7cfaf0-9015-11e1-87e8-002215124496received_state: Running Time since launch: 368.548219919 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6f7d54ea-9015-11e1-87e8-002215124496received_state: Running Time since launch: 383.621569872 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-707e5902-9015-11e1-87e8-002215124496received_state: Running Time since launch: 398.694377899 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-717e802a-9015-11e1-87e8-002215124496received_state: Running Time since launch: 413.76710391 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 0
+
+##################### Replica State Check at: Thu Apr 26 20:09:39 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6e7cfaf0-9015-11e1-87e8-002215124496received_state: Running Time since launch: 428.840907812 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6f7d54ea-9015-11e1-87e8-002215124496received_state: Running Time since launch: 443.913537025 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-707e5902-9015-11e1-87e8-002215124496received_state: Running Time since launch: 458.986150026 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-717e802a-9015-11e1-87e8-002215124496received_state: Running Time since launch: 474.059568882 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 0
+
+##################### Replica State Check at: Thu Apr 26 20:10:39 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6e7cfaf0-9015-11e1-87e8-002215124496received_state: Running Time since launch: 489.132753849 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6f7d54ea-9015-11e1-87e8-002215124496received_state: Running Time since launch: 504.205422878 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-707e5902-9015-11e1-87e8-002215124496received_state: Running Time since launch: 519.290607929 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-717e802a-9015-11e1-87e8-002215124496received_state: Running Time since launch: 534.383648872 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 0
+
+##################### Replica State Check at: Thu Apr 26 20:11:40 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6e7cfaf0-9015-11e1-87e8-002215124496received_state: Running Time since launch: 549.461036921 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6f7d54ea-9015-11e1-87e8-002215124496received_state: Running Time since launch: 564.849701881 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-707e5902-9015-11e1-87e8-002215124496received_state: Running Time since launch: 579.957875967 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-717e802a-9015-11e1-87e8-002215124496received_state: Running Time since launch: 595.074774027 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 0
+
+##################### Replica State Check at: Thu Apr 26 20:12:40 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6e7cfaf0-9015-11e1-87e8-002215124496received_state: Running Time since launch: 610.209899902 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-6f7d54ea-9015-11e1-87e8-002215124496received_state: Running Time since launch: 625.307605982 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-707e5902-9015-11e1-87e8-002215124496received_state: Done Time since launch: 640.402436018 sec
+(INFO) Replica 2 done
+
+ (INFO) Get Energy: 2
+(DEBUG) energy : -159301.9660 from replica 2
+
+(INFO)   replica_id:2 is in Done State  and looking for an exchange
+
+(INFO)replica_id: 2 found replica_id: 0 in done state 
+
+ (INFO) Get Energy: 0
+(DEBUG) energy : -161587.8617 from replica 0
+(DEBUG) delta = 239.647882 en_a = -161587.861700 from rep 0 en_b = -159301.966000 from rep 2
+
+(INFO) replica_id:2 exchanged temperature with replica_id: 0
+
+
+
+ (Replica Exchange INFO): 1
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-717e802a-9015-11e1-87e8-002215124496received_state: Done Time since launch: 646.798895836 sec
+(INFO) Replica 3 done
+
+ (INFO) Get Energy: 3
+(DEBUG) energy : -158034.5228 from replica 3
+
+(INFO)   replica_id:3 is in Done State  and looking for an exchange
+
+ replica_id:0  Not in Done State 
+ 
+
+(INFO)replica_id: 3 found replica_id: 1 in done state 
+
+ (INFO) Get Energy: 1
+(DEBUG) energy : -160214.0157 from replica 1
+(DEBUG) delta = 214.421457 en_a = -160214.015700 from rep 1 en_b = -158034.522800 from rep 3
+
+(INFO) replica_id:3 exchanged temperature with replica_id: 1
+
+
+
+ (Replica Exchange INFO): 2
+
+
+
+ (EXCHANGE COUNT) INFO : 2
+
+##################### Replica State Check at: Thu Apr 26 20:13:24 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-eee6f6ea-9016-11e1-87e8-002215124496received_state: Running Time since launch: 653.733155966 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f305af64-9016-11e1-87e8-002215124496received_state: Running Time since launch: 668.834198952 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-edd7d2d8-9016-11e1-87e8-002215124496received_state: Running Time since launch: 683.914994955 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f1bf536c-9016-11e1-87e8-002215124496received_state: Running Time since launch: 699.058794975 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 2
+
+##################### Replica State Check at: Thu Apr 26 20:14:24 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-eee6f6ea-9016-11e1-87e8-002215124496received_state: Running Time since launch: 714.184834957 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f305af64-9016-11e1-87e8-002215124496received_state: Running Time since launch: 729.276288986 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-edd7d2d8-9016-11e1-87e8-002215124496received_state: Running Time since launch: 744.386461973 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f1bf536c-9016-11e1-87e8-002215124496received_state: Running Time since launch: 759.507196903 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 2
+
+##################### Replica State Check at: Thu Apr 26 20:15:25 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-eee6f6ea-9016-11e1-87e8-002215124496received_state: Running Time since launch: 774.607827902 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f305af64-9016-11e1-87e8-002215124496received_state: Running Time since launch: 789.745640993 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-edd7d2d8-9016-11e1-87e8-002215124496received_state: Running Time since launch: 804.871874809 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f1bf536c-9016-11e1-87e8-002215124496received_state: Running Time since launch: 820.006731987 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 2
+
+##################### Replica State Check at: Thu Apr 26 20:16:25 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-eee6f6ea-9016-11e1-87e8-002215124496received_state: Running Time since launch: 835.11665082 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f305af64-9016-11e1-87e8-002215124496received_state: Running Time since launch: 850.202049971 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-edd7d2d8-9016-11e1-87e8-002215124496received_state: Running Time since launch: 865.314842939 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f1bf536c-9016-11e1-87e8-002215124496received_state: Running Time since launch: 880.43524003 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 2
+
+##################### Replica State Check at: Thu Apr 26 20:17:26 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-eee6f6ea-9016-11e1-87e8-002215124496received_state: Running Time since launch: 895.534130812 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f305af64-9016-11e1-87e8-002215124496received_state: Running Time since launch: 910.629110813 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-edd7d2d8-9016-11e1-87e8-002215124496received_state: Running Time since launch: 925.724845886 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f1bf536c-9016-11e1-87e8-002215124496received_state: Running Time since launch: 940.862806797 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 2
+
+##################### Replica State Check at: Thu Apr 26 20:18:26 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-eee6f6ea-9016-11e1-87e8-002215124496received_state: Running Time since launch: 955.975031853 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f305af64-9016-11e1-87e8-002215124496received_state: Running Time since launch: 971.08551383 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-edd7d2d8-9016-11e1-87e8-002215124496received_state: Running Time since launch: 986.19482398 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f1bf536c-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1001.26836085 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 2
+
+##################### Replica State Check at: Thu Apr 26 20:19:26 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-eee6f6ea-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1016.37648582 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f305af64-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1031.53602695 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-edd7d2d8-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1046.6589148 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f1bf536c-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1061.76798487 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 2
+
+##################### Replica State Check at: Thu Apr 26 20:20:27 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-eee6f6ea-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1076.87131 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f305af64-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1091.94549584 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-edd7d2d8-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1107.06795597 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f1bf536c-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1122.19189191 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 2
+
+##################### Replica State Check at: Thu Apr 26 20:21:27 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-eee6f6ea-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1137.304842 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f305af64-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1152.40776801 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-edd7d2d8-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1167.51731396 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f1bf536c-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1182.64900994 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 2
+
+##################### Replica State Check at: Thu Apr 26 20:22:28 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-eee6f6ea-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1197.7540369 sec
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f305af64-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1212.88385987 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-edd7d2d8-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1227.99840999 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f1bf536c-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1243.09204793 sec
+
+
+
+ (EXCHANGE COUNT) INFO : 2
+
+##################### Replica State Check at: Thu Apr 26 20:23:28 2012 ########################
+replica_id: 0 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-eee6f6ea-9016-11e1-87e8-002215124496received_state: Done Time since launch: 1258.18856287 sec
+(INFO) Replica 0 done
+
+ (INFO) Get Energy: 0
+(DEBUG) energy : -157955.3790 from replica 0
+
+(INFO)   replica_id:0 is in Done State  and looking for an exchange
+
+ Checking the same replica.........0
+
+ replica_id:1  Not in Done State 
+ 
+
+(INFO)replica_id: 0 found replica_id: 2 in done state 
+
+ (INFO) Get Energy: 2
+(DEBUG) energy : -158141.2354 from replica 2
+(DEBUG) delta = -19.484744 en_a = -158141.235400 from rep 2 en_b = -157955.379000 from rep 0
+(DEBUG) delta = -19.484744 en_a = -158141.235400 from rep 2 en_b = -157955.379000 from rep 0
+
+(INFO) replica_id:0 exchanged temperature with replica_id: 2
+
+
+
+ (Replica Exchange INFO): 3
+replica_id: 1 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f305af64-9016-11e1-87e8-002215124496received_state: Running Time since launch: 1264.85025787 sec
+replica_id: 2 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-5f48a8ba-9018-11e1-87e8-002215124496received_state: Running Time since launch: 1279.93923903 sec
+replica_id: 3 job: bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org:jobs:sj-f1bf536c-9016-11e1-87e8-002215124496received_state: Done Time since launch: 1295.02872181 sec
+(INFO) Replica 3 done
+
+ (INFO) Get Energy: 3
+(DEBUG) energy : -158314.5313 from replica 3
+
+(INFO)   replica_id:3 is in Done State  and looking for an exchange
+
+ replica_id:0  Not in Done State 
+ 
+
+(INFO)replica_id: 3 found replica_id: 1 in done state 
+
+ (INFO) Get Energy: 1
+(DEBUG) energy : -158227.9827 from replica 1
+(DEBUG) delta = -8.514768 en_a = -158227.982700 from rep 1 en_b = -158314.531300 from rep 3
+(DEBUG) delta = -8.514768 en_a = -158227.982700 from rep 1 en_b = -158314.531300 from rep 3
+
+(INFO) replica_id:3 exchanged temperature with replica_id: 1
+
+
+
+ (Replica Exchange INFO): 4
+REMD Runtime: 1320.72004104 sec; number replica: 4; number namd jobs: 8
+
+ (INFO) Stopping BigJob
+
+ (INFO)Stopping bigjob at pilot url bigjob:bj-61da374a-9015-11e1-87e8-002215124496:sierra.futuregrid.org

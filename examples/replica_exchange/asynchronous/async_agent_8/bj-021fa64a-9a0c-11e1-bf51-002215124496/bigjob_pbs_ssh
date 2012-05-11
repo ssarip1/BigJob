@@ -1,0 +1,41 @@
+#PBS -l nodes=4:ppn=8
+#PBS -l walltime=2:0:00
+#PBS -o /N/u/ssarip1/BigJob/examples/replica_exchange/asynchronous/async_agent_8/bj-021fa64a-9a0c-11e1-bf51-002215124496/stdout-bigjob_agent.txt
+#PBS -e /N/u/ssarip1/BigJob/examples/replica_exchange/asynchronous/async_agent_8/bj-021fa64a-9a0c-11e1-bf51-002215124496/stderr-bigjob_agent.txt
+cd /N/u/ssarip1/BigJob/examples/replica_exchange/asynchronous/async_agent_8/bj-021fa64a-9a0c-11e1-bf51-002215124496
+python -c "import sys
+import os
+import urllib
+import sys
+import time
+start_time = time.time()
+home = os.environ.get(\"HOME\")
+BIGJOB_AGENT_DIR= os.path.join(home, \".bigjob\")
+if not os.path.exists(BIGJOB_AGENT_DIR): os.mkdir (BIGJOB_AGENT_DIR)
+BIGJOB_PYTHON_DIR=BIGJOB_AGENT_DIR+\"/python/\"
+BOOTSTRAP_URL=\"https://raw.github.com/saga-project/BigJob/master/bootstrap/bigjob-bootstrap.py\"
+BOOTSTRAP_FILE=BIGJOB_AGENT_DIR+\"/bigjob-bootstrap.py\"
+#ensure that BJ in .bigjob is upfront in sys.path
+sys.path.insert(0, os.getcwd() + \"/../\")
+sys.path.insert(0, os.getcwd() + \"/../../\")
+p = list()
+for i in sys.path:
+    if i.find(\".bigjob/python\")>1:
+          p.insert(0, i)
+for i in p: sys.path.insert(0, i)
+print str(sys.path)
+try: import saga
+except: print \"SAGA and SAGA Python Bindings not found: BigJob only work w/ non-SAGA backends e.g. Redis, ZMQ.\";print \"Python version: \",  os.system(\"python -V\");print \"Python path: \" + str(sys.path)
+try: import bigjob.bigjob_agent
+except: print \"BigJob not installed. Attempting to install it.\"; opener = urllib.FancyURLopener({}); opener.retrieve(BOOTSTRAP_URL, BOOTSTRAP_FILE); os.system(\"python \" + BOOTSTRAP_FILE + \" \" + BIGJOB_PYTHON_DIR); activate_this = BIGJOB_PYTHON_DIR+\"bin/activate_this.py\"; execfile(activate_this, dict(__file__=activate_this))
+#try to import BJ once again
+import bigjob.bigjob_agent
+# execute bj agent
+args = list()
+args.append(\"bigjob_agent.py\")
+args.append(\"redis://ILikeBigJob_wITH-REdIS@gw68.quarry.iu.teragrid.org:6379\")
+args.append(\"bigjob:bj-021fa64a-9a0c-11e1-bf51-002215124496:sierra.futuregrid.org\")
+print \"Bootstrap time: \" + str(time.time()-start_time)
+print \"Starting BigJob Agents with following args: \" + str(args)
+bigjob_agent = bigjob.bigjob_agent.bigjob_agent(args)
+"

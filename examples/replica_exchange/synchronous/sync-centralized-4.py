@@ -82,7 +82,7 @@ class ReManager():
        #####################################################
 
        try:
-          #print "\n (Delete Remote Directory If Exists)" + "ssh "+ str(RESMGR_URL[10:])+ " rm -rf "+ self.working_directory+"sync_agent_4"
+          #print "\n (Delete Remote Directory If Exists)" + "ssh "+ str(RESMGR_URL[10:])+ " rm -rf "+ self.working_directory+"async_agent_4"
           os.system(" ssh " + str(RESMGR_URL[10:]) + " rm -rf "+ self.working_directory + "sync_agent_4")
           print "\n (Success) Deleted BigJobAgent Working Directory"
           os.system(" ssh " + str(RESMGR_URL[10:]) + " mkdir "+ self.working_directory + "sync_agent_4")
@@ -128,16 +128,14 @@ class ReManager():
    def stage_in_files(self,replica_id,RESMGR_URL):
        start = time.time()
        #pdb.set_trace()
-       #print "\n (INFO) " + "scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "sync_agent_4/" + str(replica_id) + "/"
-       #print "\n (INFO) " + "scp -r " + self.working_directory + "sync_agent_4/ " + str(replica_id) + " " + str(RESMGR_URL)+ ":"+self.working_directory + "sync_agent/"
+       print "\n (INFO) " + "scp -r " + self.replica_directory + "* " + str(RESMGR_URL)+ ":"+self.working_directory + "sync_agent_4/" + str(replica_id) + "/"
+       print "\n (INFO) " + "scp -r " + self.working_directory + "sync_agent_4/ " + str(replica_id) + " " + str(RESMGR_URL)+ ":"+self.working_directory + "sync_agent/"
        i=replica_id
-       """ try:
-           #os.mkdir(self.working_directory + "sync_agent_4/" + str(replica_id))
-           os.system(" ssh " + str(RESMGR_URL) + " mkdir "+ self.working_directory + "sync_agent_4/"+ str(replica_id))
-
+       """try:
+           os.mkdir(self.working_directory + "sync_agent_4/" + str(replica_id))
        except:
            print "\n (INFO) Cannot create Directory  For replica_id :" + str(i)
-       """
+       """ 
        if(i<self.RPB):
           try:
              os.mkdir(self.working_directory + "sync_agent_4/" + str(replica_id))
@@ -333,7 +331,7 @@ class ReManager():
    def run_REMDg(self):
         
       ###### Main loop which runs the replica-exchange  ####
-       start = time.time()
+       REMD_start = time.time()
        COORDINATION_URL= self.COORDINATION_URL
        RESOURCEMGR_URL0= self.host
        RESOURCEMGR_URL1= self.host1
@@ -342,9 +340,10 @@ class ReManager():
        RPB= self.RPB
        NUMBER_BIGJOBS= self.NUMBER_BIGJOBS
        numEX = self.exchange_count
-       ofilename = "sync-remd-temp-4.out"
+       ofilename = "sync-remd-temp.out"
        #pdb.set_trace()
-
+       replica_id=0
+       
        for i in range(0,NUMBER_BIGJOBS):
            if(i==0):
               #print "\n (INFO) Start BigJob" + " at " + RESOURCEMGR_URL0
@@ -366,6 +365,28 @@ class ReManager():
               b= self.start_bigjob(COORDINATION_URL,RESOURCEMGR_URL3,i)
               if b[i]==None or b[i].get_state()=="Failed":
                  return
+       ######################################################
+       #   Stage Files
+       ######################################################
+       start_time = time.time()
+       for i in range (0, self.total_number_replica):
+           if(i<RPB):
+             #pdb.set_trace()
+             #print "\n (INFO) " + str(replica_id) + " " + str(RESOURCEMGR_URL0[10:])
+             self.stage_in_files(replica_id,RESOURCEMGR_URL0[10:])
+             replica_id = replica_id + 1
+           elif((i>=RPB) and (i<2*RPB)):
+             #print "\n (INFO) " + str(replica_id) + " " + str(RESOURCEMGR_URL1[10:])
+             self.stage_in_files(replica_id,RESOURCEMGR_URL1[10:])
+             replica_id = replica_id + 1 
+           elif((i>=2*RPB) and (i<3*RPB)):
+             self.stage_in_files(replica_id,RESOURCEMGR_URL2[10:])
+             replica_id = replica_id + 1
+           else:
+             self.stage_in_files(replica_id,RESOURCEMGR_URL3[10:])
+             replica_id = replica_id + 1
+       end_time = time.time()
+       print "\n (INFO) Total time to Stage files is: " + str(end_time-start_time)
 
        iEX = 0
        total_number_of_namd_jobs = 0
@@ -396,16 +417,15 @@ class ReManager():
 
             print "\n (INFO) Total Replica length is: " + str(self.total_number_replica)
             logging.debug("pilot job running: " + str(self.total_number_replica) + "jobs.")
-
+            job_spawn_time=time.time() 
             for i in range (0, self.total_number_replica):
                 ############## replica job spawn ############
                 #pdb.set_trace()
-                start=time.time()
                 #print "\n (INFO) Replica Variable value is: " + str(i)
                 if(i< RPB):
                           #start1=time.time()
                           print "\n (INFO) " + str(RESOURCEMGR_URL0[10:])
-                          self.stage_in_files(replica_id,RESOURCEMGR_URL0[10:])
+                          #self.stage_in_files(replica_id,RESOURCEMGR_URL0[10:])
                           #print "\n (INFO) total time taken to stage files is: " + str(time.time()-start1)
                           self.prepare_NAMD_config(replica_id,RESOURCEMGR_URL0[10:])
                           self.transfer_NPT(replica_id,RESOURCEMGR_URL0[10:])
@@ -420,7 +440,7 @@ class ReManager():
                 elif((i>=RPB) and (i<2*RPB)):
                           start2=time.time()
                           #print "\n (INFO) " + str(RESOURCEMGR_URL1[10:])
-                          self.stage_in_files(replica_id,RESOURCEMGR_URL1[10:])
+                          #self.stage_in_files(replica_id,RESOURCEMGR_URL1[10:])
                           #print "\n (INFO) total time taken to stage files is: " + str(time.time()-start2)
                           self.prepare_NAMD_config(replica_id,RESOURCEMGR_URL1[10:])
                           self.transfer_NPT(replica_id,RESOURCEMGR_URL1[10:])
@@ -435,7 +455,7 @@ class ReManager():
                 elif((i>=2*RPB) and (i<3*RPB)):
                           start3=time.time()
                           #print "\n (INFO) " + str(RESOURCEMGR_URL2[10:])
-                          self.stage_in_files(replica_id,RESOURCEMGR_URL2[10:])
+                          #self.stage_in_files(replica_id,RESOURCEMGR_URL2[10:])
                           #print "\n (INFO) total time taken to stage files is: " + str(time.time()-start3)
                           self.prepare_NAMD_config(replica_id,RESOURCEMGR_URL2[10:])
                           self.transfer_NPT(replica_id,RESOURCEMGR_URL2[10:])
@@ -450,7 +470,7 @@ class ReManager():
                 else:
                           start=time.time()
                           #print "\n (INFO) " + str(RESOURCEMGR_URL3[10:])
-                          self.stage_in_files(replica_id,RESOURCEMGR_URL3[10:])
+                          #self.stage_in_files(replica_id,RESOURCEMGR_URL3[10:])
                           #print "\n (INFO) total time taken to stage files is: " + str(time.time()-start)
                           self.prepare_NAMD_config(replica_id,RESOURCEMGR_URL3[10:])
                           self.transfer_NPT(replica_id,RESOURCEMGR_URL3[10:])
@@ -466,15 +486,14 @@ class ReManager():
             # contains number of started replicas
             numReplica = len(self.replica_jobs)
             print "\n started " + "%d"%numReplica + " of " + str(self.total_number_replica) + " in this round."
-            print "\n Time for spawning " + "%d"%numReplica + " replica: " + str(end_time-start_time) + " s"
-
+            print "\n Time for spawning " + "%d"%numReplica + " replica: " + str(end_time-job_spawn_time) + " s"
 
             #################################### Waiting for job termination #####################################
             # Start  job monitoring
             energy = [0 for i in range(0, numReplica)]
             flagJobDone = [ False for i in range(0, numReplica)]
             numJobDone = 0
-            start_time=time.time()
+
             print "\n" 
             while 1:
                    print "\n##################### Replica State Check at: " + time.asctime(time.localtime(time.time())) + " ########################"
@@ -484,7 +503,7 @@ class ReManager():
                            state = running_job.get_state()
                        except: 
                            pass
-                       print "replica_id: " + str(irep) + " job: " + str(running_job) + "received_state: " + str(state) + " Time since launch: " + str(time.time()-start) + " sec"
+                       print "replica_id: " + str(irep) + " job: " + str(running_job) + "received_state: " + str(state) + " Time since launch: " + str(time.time()-job_spawn_time) + " sec"
                        if (str(state) == "Done") and (flagJobDone[irep] is False):
                            print "(INFO) Replica " + "%d"%irep + " done"
                            energy[irep] = self.get_energy(irep) ##todo get energy from right host
@@ -492,29 +511,21 @@ class ReManager():
                            numJobDone = numJobDone + 1
                            total_number_of_namd_jobs = total_number_of_namd_jobs + 1
                        elif(str(state)=="Failed"):
-                           self.stop_bigjob() 
+                           self.stop_glidin_jobs()
                            sys.exit(1)
                 
                    if numJobDone == numReplica:
                            break
                    time.sleep(15)
-            end_time=time.time()
-            print "\n Time for Job Termination " + "%d"%numReplica + " replica: " + str(end_time-start_time) 
-
             ####################################### Replica Exchange ##################################    
             # replica exchange step        
             print "\n(INFO) Now exchange step...."
-            start_time=time.time()
-
             for irep in range(0, numReplica-1):
                 en_a = energy[irep]
                 en_b = energy[irep+1]
                 self.do_exchange(energy, irep, irep+1)
-
-            end_time=time.time()
-            print "\n Time for Job Exchange " + "%d"%numReplica + " replica: " + str(end_time-start_time) 
-
-            iEX = iEX +1
+    
+            iEX = iEX + (numReplica/2)
             output_str = "%5d-th EX :"%iEX
             for irep in range(0, numReplica):
                 output_str = output_str + "  %s"%self.temperatures[irep]
@@ -531,7 +542,7 @@ class ReManager():
             if iEX == numEX:
                 break
         
-       print "REMD Runtime: " + str(time.time()-start) + " sec; " + "number replica: " + str(self.total_number_replica) + "; number namd jobs: " + str(total_number_of_namd_jobs)
+       print "REMD Runtime: " + str(time.time()-REMD_start) + " sec; " + "number replica: " + str(self.total_number_replica) + "; number namd jobs: " + str(total_number_of_namd_jobs)
        print "\n (INFO) Stopping BigJob"  
        self.stop_bigjob()
        
@@ -553,7 +564,7 @@ if __name__ == "__main__":
           re_manager.run_REMDg()
       except:
           traceback.print_exc(file=sys.stdout)
-          print "Stop BigJob"
+          print "Stop Glide-Ins"
           re_manager.stop_bigjob()
    else:
       print "Usage : \n python " + sys.argv[0] + " --type=<REMD> --configfile=<configfile> \n"
